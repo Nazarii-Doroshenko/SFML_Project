@@ -1,0 +1,10 @@
+Controls:
+W = Forward;
+S = Back;
+A = Left;
+D = Right;
+Shift = 2x speed;
+Cntrl = 0.5x speed;
+Ecs/F = Close;
+R = Restart;
+H = help;
