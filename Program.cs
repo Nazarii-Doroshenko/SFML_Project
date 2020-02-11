@@ -15,7 +15,7 @@ namespace NEWTEST
         static CircleShape circle;
         static RectangleShape rect, rect1, rect2, rectb1, recty1, recty2;
         static RectangleShape rectbl1, rectbl2;//bl = block
-        static Font Arial = new Font(@"C:\Users\User\source\repos\NEWTEST\9041.ttf");
+        static Font Arial = new Font(@"9041.ttf");
 
 
 
