@@ -37,20 +37,25 @@ namespace NEWTEST
             Text text3 = new Text(ab, Arial, 50);
             Text text2 = new Text(b, Arial, 50);
             Text Next = new Text(next, Arial, 70);
+
             ControlsWindow = new RenderWindow(new VideoMode(1200, 800), "Help");
             ControlsWindow.Clear(Color.Black);
+
             text1.Position = new Vector2f(10, 200);
             text2.Position = new Vector2f(10, 270);
             text3.Position = new Vector2f(10, 340);
             Next.Position = new Vector2f(10, 400);
+
             text1.DisplayedString = a;
             text2.DisplayedString = b;
             text3.DisplayedString = ab;
             Next.DisplayedString = next;
+
             ControlsWindow.Draw(text1);
             ControlsWindow.Draw(text2);
             ControlsWindow.Draw(text3);
             ControlsWindow.Draw(Next);
+
             ControlsWindow.Display();
 
             while (IsHelpWindowOpen())
@@ -149,7 +154,7 @@ namespace NEWTEST
             }
             ShapesRend();
 
-            window.SetFramerateLimit(60);
+            window.SetFramerateLimit(45);
             while (IsWindowOpen())
             {
 
@@ -162,69 +167,31 @@ namespace NEWTEST
         }
         static void Input()
         {
-
+            float dx, dy;
             if (Keyboard.IsKeyPressed(Keyboard.Key.W))
             {
-                if (Keyboard.IsKeyPressed(Keyboard.Key.LControl))
-                {
-                    circle.Position += new Vector2f(0f, -0.5f);
-                }
-                else if (Keyboard.IsKeyPressed(Keyboard.Key.LShift))
-                {
-                    circle.Position += new Vector2f(0f, -2f);
-                }
-                else
-                {
-                    circle.Position += new Vector2f(0f, -1f);
-                }
+                dx = 0;
+                dy = -1;
+                CopyPast(dx, dy);
 
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.A))
             {
-                if (Keyboard.IsKeyPressed(Keyboard.Key.LControl))
-                {
-                    circle.Position += new Vector2f(-0.5f, 0f);
-                }
-                else if (Keyboard.IsKeyPressed(Keyboard.Key.LShift))
-                {
-                    circle.Position += new Vector2f(-2f, 0f);
-                }
-                else
-                {
-                    circle.Position += new Vector2f(-1f, 0f);
-                }
-
+                dx = -1;
+                dy = 0;
+                CopyPast(dx, dy);
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.S))
             {
-                if (Keyboard.IsKeyPressed(Keyboard.Key.LControl))
-                {
-                    circle.Position += new Vector2f(0f, 0.5f);
-                }
-                else if (Keyboard.IsKeyPressed(Keyboard.Key.LShift))
-                {
-                    circle.Position += new Vector2f(0f, 2f);
-                }
-                else
-                {
-                    circle.Position += new Vector2f(0f, 1f);
-                }
-
+                dx = 0;
+                dy = 1;
+                CopyPast(dx, dy);
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D))
             {
-                if (Keyboard.IsKeyPressed(Keyboard.Key.LControl))
-                {
-                    circle.Position += new Vector2f(0.5f, 0f);
-                }
-                else if (Keyboard.IsKeyPressed(Keyboard.Key.LShift))
-                {
-                    circle.Position += new Vector2f(2f, 0f);
-                }
-                else
-                {
-                    circle.Position += new Vector2f(1f, 0f);
-                }
+                dx = 1;
+                dy = 0;
+                CopyPast(dx, dy);
 
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.F) || Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -247,18 +214,59 @@ namespace NEWTEST
             {
                 window.Close();
                 Render();
+                
             }
             
         }
-
-
-        /* static bool logic()
+        static void LControl(float dx, float dy)
+        {   
+                dx /= 2;
+                dy /= 2;
+                circle.Position += new Vector2f(dx, dy);  
+        }
+        
+        
+        static void LShift(float dx, float dy)
+        { 
+                dx *= 2;
+                dy *= 2;
+                circle.Position += new Vector2f(dx, dy);    
+        }
+        static void DefaultGo(float dx, float dy)
+        {
+            circle.Position += new Vector2f(dx, dy);
+        }
+        static void CopyPast(float dx, float dy)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.LControl))
+            {
+                LControl(dx, dy);
+            }
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.LShift))
+            {
+                LShift(dx, dy);
+            }
+            else
+            {
+                DefaultGo(dx, dy);
+            }
+        }
+        static void GetPixel(float dx, float dy)
+        {
+            
+        }
+         static void logic()
          {
+            //if (GetPixel())
+            {
 
+            }
 
-         }*/
-    }
+         }
+
+    } 
 }
+
 
 
 
