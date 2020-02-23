@@ -9,3 +9,4 @@ Ecs/F = Close;
 R = Restart;
 H = help;
 To play press - Enter";
+ 
